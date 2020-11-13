@@ -1,0 +1,8 @@
+{
+  "Path": "",
+  "FileFormat": "@FileName-{Date}.txt",
+  "SplitLevel": true,
+  "IncludeScopes": true,
+  "LogLevel": "Debug"
+}
+
