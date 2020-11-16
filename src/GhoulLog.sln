@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhoulLog", "GhoulLog\GhoulLog.csproj", "{DC8F3AC4-AF8A-4E46-8556-E706C185007F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhoulLog.Test", "GhoulLog.Test\GhoulLog.Test.csproj", "{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{DC8F3AC4-AF8A-4E46-8556-E706C185007F}.Release|x64.Build.0 = Release|Any CPU
 		{DC8F3AC4-AF8A-4E46-8556-E706C185007F}.Release|x86.ActiveCfg = Release|Any CPU
 		{DC8F3AC4-AF8A-4E46-8556-E706C185007F}.Release|x86.Build.0 = Release|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Debug|x64.Build.0 = Debug|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Release|x64.ActiveCfg = Release|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Release|x64.Build.0 = Release|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F648A0CD-5209-4C78-AB84-9F9CCC33F82B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

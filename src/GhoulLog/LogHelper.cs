@@ -1,15 +1,14 @@
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Microsoft.Extensions.Logging;
 
 namespace GhoulLog
 {
     public class LogHelper
     {
-
         const string M_LogFileName = "log";
         private static IDictionary<string, LoggerFactory> m_factorys = new Dictionary<string, LoggerFactory>();
 
@@ -18,9 +17,7 @@ namespace GhoulLog
             if (string.IsNullOrEmpty(fileName))
                 fileName = M_LogFileName;
             if (fileName == M_LogFileName && LogConfig.Config.SplitLevel)
-            {
                 fileName += $".{level.ToString().ToLower()}";
-            }
 
             if (!m_factorys.ContainsKey(fileName))
             {
@@ -30,12 +27,12 @@ namespace GhoulLog
                     {
                         var logPath = GetLogPath();
 
-                        var pathFormat = logPath + LogConfig.Config.FileFormat.Replace("@FileName", fileName);
+                        var pathFormat = System.IO.Path.Combine(logPath, LogConfig.Config.FileFormat.Replace("@FileName", fileName));
 
                         var factory = new LoggerFactory();
+                        factory.AddDebug();
+                        factory.AddConsole(LogConfig.Config.LogLevel, true);
                         factory.AddFile(pathFormat, LogConfig.Config.LogLevel);
-
-
                         m_factorys.Add(fileName, factory);
                     }
                 }
@@ -48,7 +45,7 @@ namespace GhoulLog
         {
             var logPath = LogConfig.Config.Path;
             if (string.IsNullOrEmpty(logPath))
-                logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FoldSplitSymbol, "Logs", FoldSplitSymbol);
+                logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
 
             return logPath;
         }
@@ -59,17 +56,14 @@ namespace GhoulLog
             var fileName = "logging.json";
             var configStream = GetConfigStreamFromFile(fileName);
             if (configStream == null)
-            {
                 configStream = GetConfigStreamFromResource(fileName);
-            }
 
             return DeserializeFromStream<LogConfig>(configStream);
         }
 
         private static string GetCurrentPath()
         {
-            var asm = Assembly.GetExecutingAssembly();
-            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return AppDomain.CurrentDomain.BaseDirectory;
         }
 
         private static string FoldSplitSymbol
@@ -84,7 +78,7 @@ namespace GhoulLog
 
         private static Stream GetConfigStreamFromFile(string fileName)
         {
-            var path = GetCurrentPath() + FoldSplitSymbol + fileName;
+            var path = System.IO.Path.Combine(GetCurrentPath(), FoldSplitSymbol, fileName);
             if (!File.Exists(path)) return null;
 
             using (var file = File.OpenRead(path))
@@ -96,7 +90,7 @@ namespace GhoulLog
         }
 
         /// <summary>
-        /// load source
+        /// read resource
         /// </summary>
         private static Stream GetConfigStreamFromResource(string fileName)
         {
